@@ -1,0 +1,75 @@
+{% extends "basePage.html" %} {% block content %}
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Login Here</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Contact Us  -->
+<div class="contact-box-main">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-sm-12">
+				<div class="contact-form-right">
+					<form method="post" class="contactForm">
+						{% csrf_token %}
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input
+										type="text"
+										class="form-control"
+										id="name"
+										name="uName"
+										placeholder="Username"
+										required
+										data-error="Please enter your name"
+									/>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input
+										type="password"
+										placeholder="Password"
+										id="email"
+										class="form-control"
+										name="password"
+										required
+										data-error="Please enter your email"
+									/>
+									<div class="help-block with-errors"></div>
+								</div>
+
+								<div class="submit-button text-center">
+									<input
+										type="submit"
+										class="btn hvr-hover"
+										id="submit"
+										value="Login"
+									/>
+									<div id="msgSubmit" class="h3 text-center hidden"></div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-12"></div>
+		</div>
+	</div>
+</div>
+<!-- End Cart -->
+
+<!-- Start Instagram Feed  -->
+{% endblock %}

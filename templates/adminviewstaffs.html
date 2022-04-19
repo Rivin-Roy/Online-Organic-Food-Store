@@ -1,0 +1,88 @@
+{% extends 'adminbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<center>
+	<div style="margin: 50px">
+		<hr />
+		<h3>Active Staffs</h3>
+		<hr />
+		{% if data %}
+		<table border="1" style="margin: 50px; width: 90%">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>House</th>
+				<th>Street</th>
+				<th>District</th>
+				<th>Pincode</th>
+				<th>Contact</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+			{% for d in data %}
+			<tr>
+				<td>{{d.1}}</td>
+				<td>{{d.2}}</td>
+				<td>{{d.3}}</td>
+				<td>{{d.4}}</td>
+				<td>{{d.5}}</td>
+				<td>{{d.6}}</td>
+				<td>{{d.7}}</td>
+				<td>{{d.8}}</td>
+				<td><a href="/adminblockstaff?sid={{d.0}}&status=Block">Block</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h3>No Records</h3>
+		{% endif %}
+		<hr />
+		<h3>Blocked Staffs</h3>
+		<hr />
+		{% if bdata %}
+		<table border="1" style="margin: 50px; width: 90%">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>House</th>
+				<th>Street</th>
+				<th>District</th>
+				<th>Pincode</th>
+				<th>Contact</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+			{% for bd in bdata %}
+			<tr>
+				<td>{{bd.1}}</td>
+				<td>{{bd.2}}</td>
+				<td>{{bd.3}}</td>
+				<td>{{bd.4}}</td>
+				<td>{{bd.5}}</td>
+				<td>{{bd.6}}</td>
+				<td>{{bd.7}}</td>
+				<td>{{bd.8}}</td>
+				<td>
+					<a href="/adminblockstaff?sid={{bd.0}}&status=Active">Activate</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h3>No Records</h3>
+		{% endif %}
+	</div>
+</center>
+
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') {
+		alert(msg);
+		// location.href="/adminproduct";
+	}
+</script>
+{% endblock %}

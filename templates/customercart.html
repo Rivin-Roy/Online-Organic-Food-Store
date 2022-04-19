@@ -1,0 +1,131 @@
+{% extends 'customerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<center>
+	<div style="margin: 50px">
+		<hr />
+		<h3>Cart</h3>
+		<hr />
+
+		<form action="/payment" method="get" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table border="0">
+				<tr>
+					<th>CATEGORY</th>
+					<th>SUBCATEGORY</th>
+					<th>BRAND</th>
+					<th>ITEM NAME</th>
+					<th>QUANTITY</th>
+					<th>RATE</th>
+					<th colspan="2">IMAGE</th>
+				</tr>
+				{% for d in data %}
+				<input
+					type="hidden"
+					name=""
+					class="counter"
+					value="{{forloop.counter}}"
+				/>
+				<input type="hidden" name="cartid" value="{{d.12}}" />
+				<tr>
+					<td>{{d.8}}</td>
+					<td>{{d.9}}</td>
+					<td>{{d.10}}</td>
+					<td>{{d.3}}</td>
+					<td>
+						{% if d.7 < d.11 %}
+						<input
+							type="hidden"
+							name=""
+							value="none"
+							id="buttonCheck{{forloop.counter}}"
+						/>
+						<input
+							type="hidden"
+							name=""
+							class="checker"
+							value="{{forloop.counter}}"
+						/>
+						<span style="color: red"> Out of Stock </span> {% endif %}
+						{{d.11}}
+					</td>
+					<td>
+						<input
+							type="number"
+							name=""
+							id="rate{{forloop.counter}}"
+							value="{{d.14}}"
+							readonly
+							style="border: none; width: 100px"
+						/>
+					</td>
+					<td><img src="/static{{d.6}}" alt="" style="width: 100px" /></td>
+					<td><a href="/removefromcart?chid={{d.13}}">Remove</a></td>
+				</tr>
+				{% endfor %}
+				<tr></tr>
+				<tr>
+					<td class="text-center" colspan="4">
+						<h3>Total :</h3>
+					</td>
+					<td colspan="4">
+						<h3>
+							<input
+								type="number"
+								name="totalValue"
+								id="totalValue"
+								style="border: none"
+								readonly
+							/>
+						</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" class="text-center">
+						<input
+							type="submit"
+							class="btn btn-success"
+							value="Proceed to Payment"
+							style="margin: auto"
+							name="submit"
+							id="submitBtn"
+						/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</center>
+<script>
+	let counter = document.getElementsByClassName('counter').length;
+	let totalAmount = 0;
+	let amount;
+	for (let i = 1; i <= counter; i++) {
+		let id = 'rate' + i;
+		console.log(id);
+		amount = document.getElementById(id).value;
+		console.log(amount);
+		totalAmount = parseInt(totalAmount) + parseInt(amount);
+	}
+	console.log(totalAmount);
+	document.getElementById('totalValue').value = totalAmount;
+
+	let checker = document.getElementsByClassName('checker').length;
+	let flag = true;
+	for (let j = 1; j <= checker; j++) {
+		let id = 'buttonCheck' + j;
+		if (document.getElementById(id)) {
+			flag = false;
+			break;
+		}
+	}
+	if (flag == false) {
+		document.getElementById('submitBtn').disabled = true;
+	}
+</script>
+</div>
+{% endblock %}

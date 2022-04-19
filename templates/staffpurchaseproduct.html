@@ -1,0 +1,244 @@
+{% extends 'staffbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div style="margin: 50px">
+	<hr />
+	<h3 class="text-center">Purchase list</h3>
+	<hr />
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<table style="margin: 50px; float: left" align="center">
+			<br /><br />
+			<h2 align="center"><b></b></h2>
+			<tr>
+				<td><b>Select category :</b></td>
+				<td>
+					<select name="cat" id="cat" class="form-control">
+						<option>Select category</option>
+						{% for c in category %}
+						<option value="{{c.0}}">{{c.1}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Subcategory name :</b></td>
+				<td>
+					<select name="subcat" id="subcat" class="form-control">
+						<option>Select subcategory</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Select brand :</b></td>
+				<td>
+					<select name="brand" id="brand" class="form-control">
+						<option>Select brand</option>
+						{% for b in brands %}
+						<option value="{{b.0}}">{{b.1}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Select item :</b></td>
+				<td>
+					<select name="item" id="item" class="form-control">
+						<option>Select item</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Cost price :</b></td>
+				<td>
+					<input
+						type="number"
+						name="txtCost"
+						id="cost"
+						min="1"
+						class="form-control"
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Selling price :</b></td>
+				<td>
+					<input
+						type="number"
+						name="txtSelling"
+						id="cost"
+						min="1"
+						class="form-control"
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Quantity :</b></td>
+				<td>
+					<input
+						type="number"
+						name="txtQty"
+						id="qty"
+						min="1"
+						class="form-control"
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Total price :</b></td>
+				<td>
+					<input
+						type="number"
+						name="txtPrice"
+						id="price"
+						readonly=""
+						class="form-control"
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input
+						type="submit"
+						name="submit"
+						value="Submit"
+						class="btn btn-success"
+					/>
+				</td>
+			</tr>
+		</table>
+		<table border="1" style="margin: 60px 50px 50px 550px; width: 400px">
+			<tr>
+				<th>ITEM</th>
+				<th>QUANTITY</th>
+				<th>RATE</th>
+			</tr>
+			{% for p in products %}
+			<tr>
+				<td>{{p.0}}</td>
+				<td>{{p.1}}</td>
+				<td>{{p.2}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		<input
+			type="submit"
+			class="btn btn-success"
+			style="margin-left: 100px"
+			value="Complete purchase"
+			name="complete"
+		/>
+	</form>
+</div>
+<div class="" style="margin-bottom: 200px"></div>
+<!-- <script src="../js/jquery-2.2.3.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+   $( "#cat" ).change(function () {
+      var sid = $("#cat").val();
+      debugger;
+      $.ajax({
+      url: "getcat.php?id="+sid,
+      type:'POST',
+      success: function(data) 
+      { 
+        var dt=$.trim(data);
+//        alert(dt);
+        $("#subcat").html(dt);
+      },error:function(xhr,error)
+        {
+            alert(error); 
+        }
+      });
+  });
+  $( "#brand" ).change(function () {
+      var sid = $("#subcat").val();
+      var bid = $("#brand").val();
+      debugger;
+      $.ajax({
+      url: "getitem.php?sid="+sid+"&bid="+bid,
+      type:'POST',
+      success: function(data) 
+      { 
+        var dt=$.trim(data);
+//        alert(dt);
+        $("#item").html(dt);
+      },error:function(xhr,error)
+        {
+            alert(error); 
+        }
+      });
+  });
+  $( "#qty" ).change(function () {
+      var sid = $("#cost").val();
+      var bid = $("#qty").val();
+      $("#price").val(sid*bid);
+  });
+});   
+</script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#cat').change(function () {
+			var y = $('#cat').val();
+			$.ajax({
+				url: '/getsub?id=' + y,
+				type: 'GET',
+				success: function (data) {
+					// // alert(data);
+					// var res=$.parseJSON(res);
+
+					// $.each(res.d, function (data, value)  {
+					//     // alert(o);
+					//     $("#subcat").append($("<option style='color:black;'></option>").val(value.subid).html(value.subcategory));
+					// });
+					// alert(data);
+					var jsondata = $.parseJSON(data);
+
+					$(jsondata).each(function (index, o) {
+						//alert(o);
+						$('#subcat').append(
+							$('<option></option>').text(o).attr('value', o)
+						);
+					});
+				},
+			});
+		});
+		$('#brand').change(function () {
+			var sid = $('#subcat').val();
+			var bid = $('#brand').val();
+			$.ajax({
+				url: '/getproduct?sid=' + sid + '&bid=' + bid,
+				type: 'GET',
+				success: function (data) {
+					var jsondata = $.parseJSON(data);
+
+					$(jsondata).each(function (index, o) {
+						//alert(o);
+						$('#item').append(
+							$('<option></option>').text(o[3]).attr('value', o[0])
+						);
+					});
+				},
+			});
+		});
+		$('#qty').change(function () {
+			var sid = $('#cost').val();
+			var bid = $('#qty').val();
+			$('#price').val(sid * bid);
+		});
+	});
+</script>
+
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') {
+		alert(msg);
+		// location.href="/adminproduct";
+	}
+</script>
+{% endblock %}

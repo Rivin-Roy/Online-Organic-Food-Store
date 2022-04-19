@@ -1,0 +1,268 @@
+{% extends "customerbase.html" %} {% block content %}
+
+<!-- //banner-->
+<!--/login -->
+<section class="banner-bottom">
+	<div class="container text-center" style="margin-left: 25px">
+		<div class="content-grid">
+			<div class="content-bottom">
+				<div class="buy-now mb-5">
+					<div class="container">
+						<div class="heading-setion-w3ls">
+							<h3 class="title-w3layouts">
+								Recent products <i class="fa fa-bell-o" aria-hidden="true"></i
+								><i class="fa fa-bell" aria-hidden="true"></i>
+							</h3>
+						</div>
+						<div class="team-grids">
+							<!-- Bottom to top-->
+							<div class="details-top-w3ls">
+								{% for i in data %}
+								<div class="col-md-3 team-grid">
+									<!-- normal -->
+									<div
+										class="ih-item circle effect10 bottom_to_top"
+										style="display: flex"
+									>
+										<div class="img">
+											<a href="/static{{i.6}}" target="_blank">
+												<img
+													style="padding: 25px; height: 400px; width: 400px"
+													src="/static{{i.6}}"
+													alt=""
+												/>
+											</a>
+											<!-- <span style="color:black">{{i.3}}</span> -->
+										</div>
+										<div class="info" style="margin-top: 50px">
+											<h3>Product.{{i.3}}</h3>
+											<h3>Rs.{{i.5}}</h3>
+											<ul>
+												<li class="cary-li-w3-agileits">
+													<div class="snipcart-details top_brand_home_details">
+														<form action="#" method="post">
+															<fieldset>
+																<a href="/customerviewproduct?id={{i.0}}"
+																	><input
+																		type="button"
+																		name="submit"
+																		value="View details"
+																		class="button"
+																/></a>
+															</fieldset>
+														</form>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+
+									<!-- end normal -->
+								</div>
+								{% endfor %}
+							</div>
+
+							<!-- end Bottom to top-->
+						</div>
+					</div>
+					<br />
+					<a href="/customerallproducts" style="margin: 30px 100px"
+						>View more...</a
+					>
+				</div>
+				{% if recomend %}
+				<div class="buy-now">
+					<div class="container">
+						<div class="heading-setion-w3ls">
+							<h3 class="title-w3layouts">
+								Recommendations for you
+								<i class="fa fa-bell-o" aria-hidden="true"></i
+								><i class="fa fa-bell" aria-hidden="true"></i>
+							</h3>
+						</div>
+						<div class="team-grids">
+							<!-- Bottom to top-->
+							<div class="details-top-w3ls">
+								{% for i in recomend %}
+								<div class="col-md-3 team-grid">
+									<!-- normal -->
+									<div
+										class="ih-item circle effect10 bottom_to_top"
+										style="display: flex"
+									>
+										<div class="img">
+											<a href="/static{{i.6}}" target="_blank">
+												<img
+													style="padding: 25px; height: 400px; width: 400px"
+													src="/static{{i.6}}"
+													alt=""
+												/>
+											</a>
+											<!-- <span>{{i.3}}</span> -->
+										</div>
+										<div class="info" style="margin-top: 50px">
+											<h3>Product.{{i.3}}</h3>
+											<h3>Rs.{{i.5}}</h3>
+											<ul>
+												<li class="cary-li-w3-agileits">
+													<div class="snipcart-details top_brand_home_details">
+														<form action="#" method="post">
+															<fieldset>
+																<a href="/customerviewproduct?id={{i.0}}"
+																	><input
+																		type="button"
+																		name="submit"
+																		value="View details"
+																		class="button"
+																/></a>
+															</fieldset>
+														</form>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- end normal -->
+								</div>
+								{% endfor %}
+							</div>
+
+							<!-- end Bottom to top-->
+						</div>
+					</div>
+				</div>
+				<br /><br />
+				{% endif %} {% if mostselling %}
+				<div class="buy-now">
+					<div class="container">
+						<div class="heading-setion-w3ls">
+							<h3 class="title-w3layouts">
+								Most selling items
+								<i class="fa fa-bell-o" aria-hidden="true"></i
+								><i class="fa fa-bell" aria-hidden="true"></i>
+							</h3>
+						</div>
+						<div class="team-grids">
+							<!-- Bottom to top-->
+							<div class="details-top-w3ls">
+								{% for i in mostselling %}
+								<div class="col-md-3 team-grid">
+									<!-- normal -->
+									<div
+										class="ih-item circle effect10 bottom_to_top"
+										style="display: flex"
+									>
+										<div class="img">
+											<a href="/static{{i.6}}" target="_blank">
+												<img
+													style="padding: 25px; height: 400px; width: 400px"
+													src="/static{{i.6}}"
+													alt=""
+												/>
+											</a>
+											<!-- <span>{{i.3}}</span> -->
+										</div>
+										<div class="info" style="margin-top: 50px">
+											<h3>Product.{{i.3}}</h3>
+											<h3>Rs.{{i.5}}</h3>
+											<ul>
+												<li class="cary-li-w3-agileits">
+													<div class="snipcart-details top_brand_home_details">
+														<form action="#" method="post">
+															<fieldset>
+																<a href="/customerviewproduct?id={{i.0}}"
+																	><input
+																		type="button"
+																		name="submit"
+																		value="View details"
+																		class="button"
+																/></a>
+															</fieldset>
+														</form>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- end normal -->
+								</div>
+								{% endfor %}
+							</div>
+
+							<!-- end Bottom to top-->
+						</div>
+					</div>
+				</div>
+				<br /><br />
+				{% endif %} {% if recent %}
+				<div class="buy-now">
+					<div class="container">
+						<div class="heading-setion-w3ls">
+							<h3 class="title-w3layouts">
+								Recently viewed <i class="fa fa-bell-o" aria-hidden="true"></i
+								><i class="fa fa-bell" aria-hidden="true"></i>
+							</h3>
+						</div>
+						<div class="team-grids">
+							<!-- Bottom to top-->
+							<div class="details-top-w3ls">
+								{% for i in recent %}
+								<div class="col-md-3 team-grid">
+									<!-- normal -->
+									<div
+										class="ih-item circle effect10 bottom_to_top"
+										style="display: flex"
+									>
+										<div class="img">
+											<a href="/static{{i.6}}" target="_blank">
+												<img
+													style="padding: 25px; height: 400px; width: 400px"
+													src="/static{{i.6}}"
+													alt=""
+												/>
+											</a>
+											<!-- <span>{{i.3}}</span> -->
+										</div>
+										<div class="info" style="margin-top: 50px">
+											<h3>Product.{{i.3}}</h3>
+											<h3>Rs.{{i.5}}</h3>
+											<ul>
+												<li class="cary-li-w3-agileits">
+													<div class="snipcart-details top_brand_home_details">
+														<form action="#" method="post">
+															<fieldset>
+																<a href="/customerviewproduct?id={{i.0}}"
+																	><input
+																		type="button"
+																		name="submit"
+																		value="View details"
+																		class="button"
+																/></a>
+															</fieldset>
+														</form>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- end normal -->
+								</div>
+								{% endfor %}
+							</div>
+
+							<!-- end Bottom to top-->
+						</div>
+					</div>
+				</div>
+				<br /><br />
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /login -->
+<!--/shipping-->
+
+<!--//shipping-->
+<!-- footer -->
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'staffbase.html' %} {% block content %}
+<style>
+	td,
+	th {
+		padding: 10px;
+	}
+	th {
+		background-color: #38a94f;
+		color: white;
+	}
+	td {
+		background-color: #d8f4de;
+	}
+</style>
+<div style="margin: 50px">
+	<hr />
+	<h3 class="text-center">Purchase Details</h3>
+	<hr />
+
+	<center>
+		<form method="POST" enctype="multipart/form-data">
+			<h3 style="margin: 20px"></h3>
+			<table border="0">
+				<tr>
+					<th>ITEM</th>
+					<th>QUANTITY</th>
+					<th>COST PRICE</th>
+					<th>RATE</th>
+					<th></th>
+				</tr>
+				{% for d in data %}
+				<tr>
+					<td>{{d.0}}</td>
+					<td>{{d.1}}</td>
+					<td>{{d.4}}</td>
+					<td>{{d.2}}</td>
+					<td></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</form>
+	</center>
+</div>
+
+{% endblock %}

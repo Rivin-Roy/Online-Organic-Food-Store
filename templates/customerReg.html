@@ -1,0 +1,150 @@
+{% extends "basePage.html" %}
+{% block content %}
+<style>
+    .content-input-field{
+        margin-bottom: 10px;
+    }
+</style>
+		<!-- //banner-->
+		<!--/login -->
+		<section class="banner-bottom py-5">
+			<div class="container">
+				<div class="content-grid">
+					<div class="text-center icon">
+						<h2>Customer Registration</h2>
+					</div>
+					<div class="content-bottom">
+						<form action="" method="post">
+							{% csrf_token %}
+							<center>
+								<div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="fName"
+                                        placeholder="First Name"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="lName"
+                                        placeholder="Last Name"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field mt-sm-0 mt-4">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="contact"
+                                        placeholder="Contact"
+                                        pattern="[0-9]{10}"
+                                        maxlength="10"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="house"
+                                        placeholder="House"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="street"
+                                        placeholder="Street"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="district"
+                                        placeholder="District"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field">
+                                    <input
+                                        type="text"
+                                        name="pin"
+                                        placeholder="Pincode"
+                                        id="myInput"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-sm-12 content-input-field mt-sm-0 mt-4">
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        id="myInput"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+									title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+									required=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="content-input-field text-center">
+								<button type="submit" class="btn btn-primary">Register</button>
+							</div>
+                        </center>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /login -->
+		<!--/shipping-->
+		<section class="shipping-wthree">
+			<div class="shiopping-grids d-lg-flex">
+				<div class="col-lg-4 shiopping-w3pvt-gd text-center">
+					<div class="icon-gd">
+						<span class="fa fa-truck" aria-hidden="true"></span>
+					</div>
+					<div class="icon-gd-info">
+						<h3>FREE SHIPPING</h3>
+						<p>On all order over $2000</p>
+					</div>
+				</div>
+				<div class="col-lg-4 shiopping-w3pvt-gd sec text-center">
+					<div class="icon-gd">
+						<span class="fa fa-bullhorn" aria-hidden="true"></span>
+					</div>
+					<div class="icon-gd-info">
+						<h3>FREE RETURN</h3>
+						<p>On 1st exchange in 30 days</p>
+					</div>
+				</div>
+				<div class="col-lg-4 shiopping-w3pvt-gd text-center">
+					<div class="icon-gd">
+						<span class="fa fa-gift" aria-hidden="true"></span>
+					</div>
+					<div class="icon-gd-info">
+						<h3>MEMBER DISCOUNT</h3>
+						<p>Register &amp; save up to $29%</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--//shipping-->
+		<!-- footer -->
+		{% endblock %}
